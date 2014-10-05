@@ -3,7 +3,7 @@
 var DemoPromise = require('./demo_promise4_exceptions');
 
 describe('Order of resolving', function () {
-    it('resolves first', function (done) {
+    it('resolves before then()', function (done) {
         var dp = new DemoPromise();
         dp.resolve('abc');
         dp.then(function (value) {
@@ -11,7 +11,7 @@ describe('Order of resolving', function () {
             done();
         });
     });
-    it('resolves last', function (done) {
+    it('resolves after then()', function (done) {
         var dp = new DemoPromise();
         dp.then(function (value) {
             expect(value).toBe('abc');
