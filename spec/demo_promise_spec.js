@@ -1,10 +1,9 @@
-// Unit tests via: npm install jasmine-node
-
-var DemoPromise = require('./demo_promise4_exceptions');
+import './auto_mock_off';
+import { DemoPromise } from '../demo_promise4_exceptions';
 
 describe('Order of resolving', function () {
     it('resolves before then()', function (done) {
-        var dp = new DemoPromise();
+        let dp = new DemoPromise();
         dp.resolve('abc');
         dp.then(function (value) {
             expect(value).toBe('abc');
@@ -12,7 +11,7 @@ describe('Order of resolving', function () {
         });
     });
     it('resolves after then()', function (done) {
-        var dp = new DemoPromise();
+        let dp = new DemoPromise();
         dp.then(function (value) {
             expect(value).toBe('abc');
             done();
@@ -20,10 +19,9 @@ describe('Order of resolving', function () {
         dp.resolve('abc');
     });
 });
-
 describe('Chaining', function () {
     it('chains with a non-thenable', function (done) {
-        var dp = new DemoPromise();
+        let dp = new DemoPromise();
         dp.resolve('a');
         dp
         .then(function (value1) {
@@ -37,8 +35,8 @@ describe('Chaining', function () {
     });
 
     it('chains with a promise', function (done) {
-        var dp1 = new DemoPromise();
-        var dp2 = new DemoPromise();
+        let dp1 = new DemoPromise();
+        let dp2 = new DemoPromise();
         dp1.resolve(dp2);
         dp2.resolve(123);
         // Has the value been passed on to dp1?
@@ -51,7 +49,7 @@ describe('Chaining', function () {
 
 describe('Fulfilling by returning in reactions', function () {
     it('fulfills via onFulfilled', function (done) {
-        var dp = new DemoPromise();
+        let dp = new DemoPromise();
         dp.resolve();
         dp
         .then(function (value1) {
@@ -64,7 +62,7 @@ describe('Fulfilling by returning in reactions', function () {
         });
     });
     it('fulfills via onRejected', function (done) {
-        var dp = new DemoPromise();
+        let dp = new DemoPromise();
         dp.reject();
         dp
         .catch(function (reason) {
@@ -79,8 +77,8 @@ describe('Fulfilling by returning in reactions', function () {
 });
 describe('Rejecting by throwing in reactions', function () {
     it('rejects via onFulfilled', function (done) {
-        var myError;
-        var dp = new DemoPromise();
+        let myError;
+        let dp = new DemoPromise();
         dp.resolve();
         dp
         .then(function (value) {
@@ -93,8 +91,8 @@ describe('Rejecting by throwing in reactions', function () {
         });
     });
     it('rejects via onRejected', function (done) {
-        var myError;
-        var dp = new DemoPromise();
+        let myError;
+        let dp = new DemoPromise();
         dp.reject();
         dp
         .catch(function (reason1) {
