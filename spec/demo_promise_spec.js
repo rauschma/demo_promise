@@ -1,7 +1,4 @@
-// Imports are hoisted, which is why you can’t turn auto-mock off
-// via a method call in *this* module.
-// Work-around: do it in another module
-import './auto_mock_off';
+import '../auto_mock_off';
 import { DemoPromise } from '../demo_promise4_exceptions';
 
 describe('Order of resolving', function () {
